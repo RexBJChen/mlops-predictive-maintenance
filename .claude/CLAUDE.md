@@ -32,26 +32,29 @@ Step 1 — Mentor 寫練習 notebook（.ipynb）
 Step 2 — 學生實作
          動手跑 notebook，遇到問題自己解決或透過 AI 問答解決
 
-Step 3 — 系統觀念（整合前先想清楚）
+Step 3 — Mentor check notebook
+         確認 Part B 答案正確性，給出回饋
+
+Step 4 — 理解問題
+         Mentor 出題，確認概念真的懂了
+
+Step 5 — 系統觀念（整合前先想清楚）
          這個模組的邊界在哪裡？
          輸入是什麼格式？輸出是什麼格式？
          跟哪些模組串接？透過什麼介面？
          Mentor 說明設計決策，學生確認理解後才進入下一步
 
-Step 4 — 整合
+Step 6 — 整合
          把學會的工具，用正確的結構與介面，組合進當天的系統模組
 
-Step 5 — 理解問題
-         Mentor 出題，確認概念真的懂了
-
-Step 6 — Code Review
+Step 7 — Code Review
          Mentor review 學生寫的整合代碼
          指出結構問題、命名問題、耦合問題、缺少的 best practice
 
-Step 7 — Git commit and memory update 
+Step 8 — Git commit and memory update
          完成以上步驟後，幫我自動更新 CLAUDE.MD 的業務模組學習進度
 
-Step 8 — 學習過程紀錄
+Step 9 — 學習過程紀錄
          每天都用文字記錄自己學到的東西，不管是系統觀念還是只是 API 操作都寫下來
 ```
 
@@ -84,7 +87,7 @@ Step 8 — 學習過程紀錄
 > 業務模組與基礎設施層分開，基礎設施穿插在業務模組完成後才加入。
 
 ### 業務模組
-- [ ] **M1 — Project Setup + EDA**
+- [x] **M1 — Project Setup + EDA**（2026-03-19 完成）
   - 建立專案結構、下載資料、理解資料分佈與問題定義
 
 - [ ] **M2 — Data Ingestion**
@@ -142,7 +145,12 @@ Step 8 — 學習過程紀錄
 ## 進度紀錄
 
 ### 上次停在哪裡
-> 尚未開始
+> M1 完成，下一個是 M2 — Data Ingestion
 
 ### 模組完成紀錄
-> （每完成一個模組後由 Mentor 更新）
+
+#### M1 — Project Setup + EDA（2026-03-19）
+- uv 環境建立，所有套件安裝完成
+- Kaggle dataset 下載至 data/raw/（5 張表）
+- notebooks/01_eda.ipynb 完成（Part A 示範 + Part B 練習）
+- 關鍵理解：正樣本比例 0.09%、Majority Class Prediction 陷阱、稀疏事件表需轉換為 rolling window feature
