@@ -12,3 +12,19 @@ wheels/
 # Data (raw CSVs not tracked in git)
 data/raw/
 data/processed/
+
+# Notebooks
+notebooks/
+
+# Learning notes
+notes/
+
+# Claude settings
+.claude/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
