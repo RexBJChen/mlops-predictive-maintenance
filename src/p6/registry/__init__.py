@@ -1,0 +1,1 @@
+from p6.registry.promote import promote_model

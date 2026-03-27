@@ -91,7 +91,7 @@ def train(
 
         mlflow.sklearn.log_model(
             pipe,
-            name="model",
+            name="model", #呼叫registry 用這個name作為 artifact path
             input_example= X_test.head(3)
         )
     
