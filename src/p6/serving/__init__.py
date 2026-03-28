@@ -1,0 +1,1 @@
+from p6.serving.app import app
