@@ -1,0 +1,24 @@
+services:
+  mlflow:
+    build:
+      context: .
+      dockerfile: docker/mlflow.Dockerfile
+    ports:
+      - "5000:5000"
+    command: ["mlflow", "server", "--host", "0.0.0.0", "--port", "5000", "--backend-store-uri", "sqlite:///mlflow/mlflow.db", "--default-artifact-root", "mlflow-artifacts:/", "--serve-artifacts", "--artifacts-destination", "/mlflow/artifacts", "--allowed-hosts", "*"]
+    volumes:
+      - mlflow-data:/mlflow
+
+  fastapi:
+    build:
+      context: .
+      dockerfile: docker/fastapi.Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+    depends_on:
+      - mlflow
+
+volumes:
+  mlflow-data:
