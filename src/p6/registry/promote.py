@@ -29,6 +29,15 @@ def promote_model(
     model_id = bestrun.outputs.model_outputs[0].model_id
     model_uri = f"models:/{model_id}"
 
+    # 檢查 champion 是否已經是最佳模型
+    try:
+        champion_mv = client.get_model_version_by_alias(name=model_name, alias="champion")
+        if champion_mv.source == model_uri:
+            print(f"Champion unchanged: {model_name} v{champion_mv.version}")
+            return champion_mv
+    except mlflow.exceptions.MlflowException:
+        pass  # 第一次註冊，還沒有 champion
+
     mv = mlflow.register_model(
         model_uri=model_uri,
         name=model_name,

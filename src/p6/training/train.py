@@ -1,5 +1,6 @@
 # mlflow設定、pipeline、前處理、模型
 import os
+import tempfile
 import pandas as pd
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
@@ -90,6 +91,10 @@ def train(
 
         mlflow.log_param("model_type", model_class.__name__)
         mlflow.log_params(model_params)
+        with tempfile.TemporaryDirectory() as tmp:
+            ref_path = os.path.join(tmp, "reference.csv")
+            train_data[FEATURE_COLS].to_csv(ref_path, index=False)
+            mlflow.log_artifact(ref_path)
         mlflow.log_metric("f1", f1)
         mlflow.log_metric("recall", recall)
 

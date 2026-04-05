@@ -23,7 +23,7 @@ features = build_features(validated)
 train(
     feature_df=features,
     model_class=XGBClassifier,
-    model_params={"n_estimators": 200, "max_depth": 6, "random_state": 42},
+    model_params={"n_estimators": 200, "max_depth": 10, "random_state": 42},
 )
 
 # Step 4: 把最佳模型升 champion（M6）
