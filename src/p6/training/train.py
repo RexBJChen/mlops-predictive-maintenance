@@ -1,5 +1,5 @@
 # mlflow設定、pipeline、前處理、模型
-
+import os
 import pandas as pd
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
@@ -63,7 +63,10 @@ def train(
     model = RandomForestClassifier(**model_params)
 
     ## 啟動 mlflow 內部建 pipeline
-    mlflow.set_tracking_uri("file:../mlruns")
+    mlflow.set_tracking_uri(os.getenv("MLFLOW_TRACKING_URI", "file:../mlruns"))
+    #mlflow.set_tracking_uri(tracking_uri)
+    #mlflow.set_tracking_uri("file:../mlruns")
+    
     mlflow.set_experiment(experiment_name=MLflow_name)
     
     with mlflow.start_run():
