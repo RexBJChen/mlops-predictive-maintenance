@@ -26,6 +26,7 @@ DROP_COLS = ['datetime' , 'machineID', 'failuretime', 'label']
 
 def train(
         feature_df: pd.DataFrame,
+        model_class = RandomForestClassifier,
         MLflow_name : str ="predictive-maintenance",
         model_params : dict | None = None
         ) -> None :
@@ -58,9 +59,9 @@ def train(
     )
 
     if model_params is None:
-      model_params = {"n_estimators": 100, "random_state": 42}
+      model_params = {}
 
-    model = RandomForestClassifier(**model_params)
+    model = model_class(**model_params)
 
     ## 啟動 mlflow 內部建 pipeline
     mlflow.set_tracking_uri(os.getenv("MLFLOW_TRACKING_URI", "file:../mlruns"))
@@ -87,7 +88,7 @@ def train(
         f1 = f1_score(y_test, y_pred)
         recall = recall_score(y_test, y_pred)
 
-
+        mlflow.log_param("model_type", model_class.__name__)
         mlflow.log_params(model_params)
         mlflow.log_metric("f1", f1)
         mlflow.log_metric("recall", recall)
